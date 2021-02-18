@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-2 col-md-2">
-                    <input type="text" formControlName="search" name="search"/>
+                    <input type="text" formControlName="search" name="search" placeholder="Search by City Name"/>
                 </div>
                 <button (click)="search()">Search</button>
             </div>
@@ -57,6 +57,7 @@
         </div>
 
         <div id="chart-container" class="col-lg-6">
+            <h5 style="text-align: center;">Weather Forecast Chart</h5>
             <app-line-chart></app-line-chart>
         </div>
     </div>
