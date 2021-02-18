@@ -1,0 +1,27 @@
+span.temp-data ::after {
+    content: "\2103";
+}
+.show-more{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+.show-more button {
+    background-color: transparent;
+}
+.weather-detail{
+    min-height: 10vh;
+}
+.card-body {
+    position: relative
+}
+input[type='text']{
+    width: 100%;
+    border-radius: 5px;
+}
+.search-container{
+    margin: 10px 0;
+}
+button {
+    border-radius: 5px;
+}

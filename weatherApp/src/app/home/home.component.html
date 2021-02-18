@@ -1,0 +1,96 @@
+<div class="search-container">
+    <form [formGroup]="searchForm">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-2 col-md-2">
+                    <input type="text" formControlName="search" name="search"/>
+                </div>
+                <button (click)="search()">Search</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="container-fluid">
+    <div class="row" style="min-height:24em;">
+        <div class="weather-detail col-lg-6">
+            <div class="card">
+                <div class="card-body pd-3">
+                    <h5 class="card-title">{{location}}, {{country}}</h5>
+                    <div class="weather-data">
+                        <div>
+                            <label>Weather Description :</label> <span>{{weatherDescription}}</span>
+                        </div>
+                        <div>
+                            <label>Current temperature :</label> <span
+                                class="temp-data">{{currentTemp}}</span><span>&#8451;</span>
+                        </div>
+                        <div>
+                            <label>High temperature :</label> <span>{{highTemp}}</span><span>&#8451;</span>
+                        </div>
+                        <div>
+                            <label>Low temperature :</label> <span>{{lowTemp}}</span><span>&#8451;</span>
+                        </div>
+                    </div>
+                    <div class="show-more">
+                        <button type="button" data-toggle="collapse" data-target="#collapsibleData"
+                            aria-expanded="false" aria-controls="collapsibleData"
+                            (click)="toggleBtn()">{{toggleButton}}</button>
+                    </div>
+                    <div class="weather-data collapse" id="collapsibleData">
+                        <div>
+                            <label>Wind Speed :</label> <span>{{windSpeed}}</span>
+                        </div>
+                        <div>
+                            <label>Humidity :</label> <span>{{humidity}}</span>
+                        </div>
+                        <div>
+                            <label>Pressure :</label> <span>{{pressure}}</span>
+                        </div>
+                        <div>
+                            <label>Sunrise/Sunset Time :</label> <span>{{sunrise}}/{{sunset}}</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="chart-container" class="col-lg-6">
+            <app-line-chart></app-line-chart>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <p-table #dt [value]="forecastData">
+                <ng-template pTemplate="caption">
+                    Weather Forecast Table
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th *ngFor="let col of cols" [pSortableColumn]="col.field"
+                            [pSortableColumnDisabled]="col.field === 'description' || col.field === 'dt' ">
+                            {{col.header}}
+                            <p-sortIcon [field]="col.field" *ngIf="col.field !== 'description' && col.field !== 'dt'">
+                            </p-sortIcon>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th *ngFor="let col of cols">
+                            <input pInputText type="text"
+                                (input)="dt.filter($event.target.value, col.field, 'contains')" />
+                        </th>
+                    </tr>
+
+                </ng-template>
+                <ng-template pTemplate="body" let-forecast>
+                    <tr>
+                        <td *ngFor="let col of cols">
+                            {{forecast[col.field]}}
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+
+/* header{
+    position: sticky;
+    top: 0;
+} */
+header {
+    padding: 10px;
+    font-size: 23px;
+    background-color: #C3E9F9;
+}
+footer{
+    background-color: #C3E9F9;
+}
+footer p {
+    text-align: center;
+    margin-bottom: 0;
+}
